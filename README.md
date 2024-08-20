@@ -66,20 +66,16 @@ pip install .
 # Running megapharokka
 
 * Megapharokka will Run MMSeqs2 (default of `--mmseqs2`) or PyHMMER (`--pyhmmer`) or HHsuite (`--hhsuite`) against appropriately formatted ENVHOG databases.
-* `--skip_extra_annotations` will skip tRNAscan-SE, MINced and Aragorn
-* `--skip_mash` will skip Mash sketch against INPHARED.
-* Run `-m` meta mode (now irrelevant as we are not splitting files but indicate anyway).
-* `-s` creates split directories for your contig fastas, gffs and gbks.
 * You can also use `--dnaapler` to reorient contigs to begin with the large terminase subunit. Wouldn't recommend unless you know the contigs are complete.
 
 ```
 threads=8
 # mmseqs2
-megapharokka.py -i input.fasta -o output_dir -t $threads  -d envhogs_db -g 'prodigal-gv' --mmseqs2 -m -f
+megapharokka.py -i input.fasta -o output_dir -t $threads  -d envhogs_db -g 'prodigal-gv' --mmseqs2 -f
 # pyhmmer
-megapharokka.py -i input.fasta -o output_dir -t $threads  -d envhogs_db -g 'prodigal-gv' --pyhmmer -m -f
+megapharokka.py -i input.fasta -o output_dir -t $threads  -d envhogs_db -g 'prodigal-gv' --pyhmmer -f
 # hhsuite
-megapharokka.py -i input.fasta -o output_dir -t $threads  -d envhogs_db -g 'prodigal-gv' --hhsuite -m -f
+megapharokka.py -i input.fasta -o output_dir -t $threads  -d envhogs_db -g 'prodigal-gv' --hhsuite -f
 ```
 
 # Database
