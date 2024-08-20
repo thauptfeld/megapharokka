@@ -75,11 +75,11 @@ pip install .
 ```
 threads=8
 # mmseqs2
-megapharokka.py -i input.fasta -o output_dir -t $threads  -d envhogs_db -g 'prodigal-gv' --mmseqs2 -m -s -f  --skip_extra_annotations
+megapharokka.py -i input.fasta -o output_dir -t $threads  -d envhogs_db -g 'prodigal-gv' --mmseqs2 -m -f
 # pyhmmer
-megapharokka.py -i input.fasta -o output_dir -t $threads  -d envhogs_db -g 'prodigal-gv' --pyhmmer -m -s -f  --skip_extra_annotations
+megapharokka.py -i input.fasta -o output_dir -t $threads  -d envhogs_db -g 'prodigal-gv' --pyhmmer -m -f
 # hhsuite
-megapharokka.py -i input.fasta -o output_dir -t $threads  -d envhogs_db -g 'prodigal-gv' --hhsuite -m -s -f  --skip_extra_annotations
+megapharokka.py -i input.fasta -o output_dir -t $threads  -d envhogs_db -g 'prodigal-gv' --hhsuite -m -f
 ```
 
 # Database
@@ -95,12 +95,11 @@ install_databases.py -d megapharokka_db
 It requires ENVHOG database annotation and MMSeqs2 database:
 
 * `envhogs_annot_140923.tsv` for annotation.
-* `EnVhog_consensus` MMSeqs2 database with `--mmseqs2`
 
 It optionally takens the ENVHOG database files:
 
 * `enVhogs.h3m` with `--pyhmmer`
-* `EnVhog_hmm.ffdata`, `EnVhog_hmm.ffindex`, `EnVhog_a3m.ffdata`, `EnVhog_a3m.ffindex`, `EnVhog_cs219.ffdata`, `EnVhog_cs219.ffindex`, hhsuite database with `--hhsuite`
+* `envhog_mmseqs_profiles`, `envhog_mmseqs_profiles.dbtype`, `envhog_mmseqs_profiles.index`, `envhog_mmseqs_profiles.lookup`, `envhog_mmseqs_profiles_h`, `envhog_mmseqs_profiles_h.dbtype`, `envhog_mmseqs_profiles_h.index`, mmseqs database with `--mmseqs2`
 
 
 ```
@@ -128,8 +127,6 @@ options:
                         User specified gene predictor. Use "-g phanotate" or "-g prodigal" or "-g prodigal-gv". 
                         Defaults to phanotate (not required unless prodigal is desired).
   -m, --meta            meta mode for metavirome input samples
-  -s, --split           split mode for metavirome samples. -m must also be specified. 
-                        Will output separate split FASTA, gff and genbank files for each input contig.
   -c CODING_TABLE, --coding_table CODING_TABLE
                         translation table for prodigal. Defaults to 11. Experimental only.
   -e EVALUE, --evalue EVALUE
@@ -139,7 +136,6 @@ options:
   --hhsuite             Runs hhsuite on EnVhogs.
   --mmseqs2             Runs MMSeqs2 on EnVhogs.
   --pyhmmer             Runs pyhmmer on EnVhogs.
-  --skip_extra_annotations
                         Skips tRNAscan-se, MINced and Aragorn.
   -V, --version         Print pharokka Version
   --citation            Print pharokka Citation
