@@ -29,6 +29,9 @@ from util import count_contigs, get_version
 def main():
     # get the args
     args = get_input()
+    args.skip_extra_annotations=True
+    args.split=False
+    args.skip_mash=True
 
     logger.add(lambda _: sys.exit(1), level="ERROR")
 
@@ -220,18 +223,18 @@ def main():
     # translate fastas (parse genbank)
     translate_fastas(out_dir, gene_predictor, args.coding_table, args.infile)
 
-    # run trna-scan meta mode if required
-    if args.skip_extra_annotations is False:
-        if args.meta == True:
-            logger.info("Starting tRNA-scanSE. Applying meta mode.")
-            run_trnascan_meta(input_fasta, out_dir, args.threads, num_fastas)
-            concat_trnascan_meta(out_dir, num_fastas)
-        else:
-            logger.info("Starting tRNA-scanSE.")
-            run_trna_scan(input_fasta, args.threads, out_dir, logdir)
-        # run minced and aragorn
-        run_minced(input_fasta, out_dir, prefix, logdir)
-        run_aragorn(input_fasta, out_dir, prefix, logdir)
+    # # run trna-scan meta mode if required
+    # if args.skip_extra_annotations is False:
+    #     if args.meta == True:
+    #         logger.info("Starting tRNA-scanSE. Applying meta mode.")
+    #         run_trnascan_meta(input_fasta, out_dir, args.threads, num_fastas)
+    #         concat_trnascan_meta(out_dir, num_fastas)
+    #     else:
+    #         logger.info("Starting tRNA-scanSE.")
+    #         run_trna_scan(input_fasta, args.threads, out_dir, logdir)
+    #     # run minced and aragorn
+    #     run_minced(input_fasta, out_dir, prefix, logdir)
+    #     run_aragorn(input_fasta, out_dir, prefix, logdir)
 
     # running mmseqs2 on the 2 CARD and VFDB
     run_mmseqs(
@@ -343,13 +346,13 @@ def main():
     pharok.create_tbl()
 
     # output single gffs in meta mode
-    if args.split == True and args.meta == True:
-        # create gffs for each contig
-        pharok.create_gff_singles()
-        # converts each gff to gbk
-        pharok.convert_singles_gff_to_gbk()
-        # splits the input fasta into single fastas
-        pharok.split_fasta_singles()
+    # if args.split == True and args.meta == True:
+    #     # create gffs for each contig
+    #     pharok.create_gff_singles()
+    #     # converts each gff to gbk
+    #     pharok.convert_singles_gff_to_gbk()
+    #     # splits the input fasta into single fastas
+    #     pharok.split_fasta_singles()
 
     # create and write vfdb and card tophits
     # needs to be before .create_txt or else won't count properly

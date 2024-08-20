@@ -41,7 +41,10 @@ class ExternalTool:
         # note: shlex.join does not allow us to shlex.split() later
         # this is explicitly a " ".join()
         command = " ".join([tool, params, output, input])
+        print(command)
         escaped_command = shlex.split(command)
+        print(escaped_command)
+        print('\n\n')
         return escaped_command
 
     def run(self) -> None:

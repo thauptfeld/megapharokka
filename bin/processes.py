@@ -632,7 +632,7 @@ def run_mmseqs(db_dir, out_dir, threads, logdir, gene_predictor, evalue, sensiti
         mmseqs_dir = os.path.join(out_dir, "mmseqs/")
         target_db_dir = os.path.join(out_dir, "target_dir/")
         tmp_dir = os.path.join(out_dir, "tmp_dir/")
-        profile_db = os.path.join(db_dir, "EnVhog_consensus")
+        profile_db = os.path.join(db_dir, "envhog_mmseqs_profiles")
         mmseqs_result_tsv = os.path.join(out_dir, "mmseqs_results.tsv")
     elif db_name == "VFDB":
         mmseqs_dir = os.path.join(out_dir, "VFDB/")

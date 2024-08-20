@@ -14,7 +14,6 @@ mmseqs createdb protein_fasta_protein_homolog_model.fasta CARD
 # VFDB update as of August 18 2023 (not versioned)
 # clustered 
 
-mmseqs easy-cluster VFDB_setB_pro_form.fas VFDBclusterRes tmp --min-seq-id 0.5 -c 0.8 --cov-mode 1
 mmseqs createdb VFDBclusterRes_rep_seq.fasta vfdb
 
 """
@@ -50,14 +49,14 @@ VERSION_DICTIONARY = {
 ENVHOG_NAMES_ANNOT = ["envhogs_annot_140923.tsv"]
 ENVHOG_NAMES_PYHMMER = ["enVhogs.h3m"]
 ENVHOG_NAMES_MMSEQS2 = [
-    "EnVhog_consensus",
-    "EnVhog_consensus.dbtype",
-    "EnVhog_consensus.index",
-    "EnVhog_consensus.lookup",
-    "EnVhog_consensus.source",
-    "EnVhog_consensus_h",
-    "EnVhog_consensus_h.dbtype",
-    "EnVhog_consensus_h.index",
+    "envhog_mmseqs_profiles",
+    "envhog_mmseqs_profiles.dbtype",
+    "envhog_mmseqs_profiles.index",
+    "envhog_mmseqs_profiles.lookup",
+    # "envhog_mmseqs_profiles.source",
+    "envhog_mmseqs_profiles_h",
+    "envhog_mmseqs_profiles_h.dbtype",
+    "envhog_mmseqs_profiles_h.index",
 ]
 
 ENVHOG_NAMES_HHSUITE = [
@@ -162,6 +161,8 @@ def check_envhogs_installation_annot(db_dir):
     # ENVHOG files
     for file_name in ENVHOG_NAMES_ANNOT:
         path = os.path.join(db_dir, file_name)
+        print("\n\n\nStill here...")
+        print(path)
         if os.path.isfile(path) == False:
             logger.error(f"ENVHOGs Annotation Database file {path} is missing. Please copy it in!")
 
