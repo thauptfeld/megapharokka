@@ -39,12 +39,12 @@ Overall, it is clear that `megapharokka` with `--mmseqs2` oon ENVHOGs is more se
 | Annotated Function CDS                         | 17724                         | 17540|          17267               | 10131              | 16357   |
 | Unknown Function CDS                           | 57256                       | 57440   |            57713       | 64849              | 58623   |
 
-# Installing megapharokka
+# Installing megapharokka with Tina's changes
 
 1. Clone 
 
 ```
-git clone https://github.com/gbouras13/megapharokka
+git clone https://github.com/thauptfeld/megapharokka
 cd megapharokka
 ```
 
